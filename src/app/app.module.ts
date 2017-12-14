@@ -4,28 +4,56 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
-import { MyApp } from './app.component';
+
+
+import { HttpModule } from '@angular/http';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2'; 
+
+import { MyApp } from './app.component'; 
+import { FirebaseProvider } from '../providers/firebase/firebase';
+
 import { HomePage } from '../pages/home/home';
+import { ShopPage } from '../pages/shop/shop';
+
+
+var firebaseConfig  = {
+  apiKey: "AIzaSyAh0QorZocX_FS0Q5nPZj6OBXLT90CpUyA",
+  authDomain: "ionic-fiap.firebaseapp.com",
+  databaseURL: "https://ionic-fiap.firebaseio.com",
+  projectId: "ionic-fiap",
+  storageBucket: "ionic-fiap.appspot.com",
+  messagingSenderId: "1000748698604"
+};
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ShopPage
   ],
+
   imports: [
     BrowserModule,
+    HttpModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+   
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ShopPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseProvider,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FirebaseProvider
   ]
 })
 export class AppModule {}

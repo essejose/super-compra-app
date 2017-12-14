@@ -1,8 +1,11 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation }  from '@ionic-native/geolocation';
-import { NavController } from 'ionic-angular';
-
+import { NavController } from 'ionic-angular'; 
+// import { AngularFireList } from 'angularfire2/database';
+import { FirebaseProvider } from './../../providers/firebase/firebase';
+import 'rxjs/add/operator/map';
 declare var google: any;
+import { ShopPage } from '../../pages/shop/shop';
 
 @Component({
   selector: 'page-home',
@@ -11,35 +14,50 @@ declare var google: any;
 export class HomePage {
 
   map:any;
-  
+  shoppingItems:  any;
+  newItem = '';
+
+
+
 @ViewChild ('map') mapRef: ElementRef;
 
   constructor(
       public navCtrl: NavController,
-      public geolocation: Geolocation) {
+      public geolocation: Geolocation,
+      public firebaseProvider: FirebaseProvider,
+     
+    ) {
+     
 
-  }
+ } 
 
   ionViewDidLoad(){
-    console.log(this.mapRef);
- 
-    this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude 
+    
+    this.geolocation.getCurrentPosition().then((resp) => { 
 
       this.showMap(resp.coords.latitude,resp.coords.longitude );
-      
+      this.shoppingItems = this.firebaseProvider.getShoppingItems();
+     
      }).catch((error) => {
        console.log('Error getting location', error);
      });
-
-
-   
-  } 
  
+  }
+  
+  
+  addItem() {
+    this.firebaseProvider.addItem(this.newItem);
+  }
+ 
+  removeItem(id) {
+    this.firebaseProvider.removeItem(id);
+  }
+
+
   showMap(lat,lng){
 
     const location = new google.maps.LatLng(lat, lng);
+    const fakePlace = new google.maps.LatLng((lat -0.001), lng  );
     const options = {
       center:location,
       zoom:17
@@ -47,7 +65,7 @@ export class HomePage {
 
     const map = new google.maps.Map(this.mapRef.nativeElement, options);
     let marker =  this.addMarker(location,map,'you');
-
+    let marker2 =  this.addMarker(fakePlace,map,'Uma loja perto de voce','http://maps.google.com/mapfiles/ms/icons/groecerystore.png');
     var infowindow = new google.maps.InfoWindow({
       content: 'Você está aqui'
     });
@@ -55,15 +73,24 @@ export class HomePage {
         console.log(marker);
         infowindow.open(map, marker);
     })
+    google.maps.event.addListener(marker2, 'click', () => {
+      console.log(marker2);
+      infowindow.open(map, marker2);
+      this.navCtrl.push(ShopPage);
+   
+  })
+ 
 
   }
 
-  addMarker(position,map,title){
+  addMarker(position,map,title,image){
+  ;
     return new google.maps.Marker({
       position,
       map,
       animation: google.maps.Animation.DROP,
       title: title, 
+      icon: image
     })
  
 

@@ -1,6 +1,6 @@
 {
   "name": "supercompra",
-  "app_id": "",
+  "app_id": "9f897aed",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
