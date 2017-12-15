@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { LoadingController } from 'ionic-angular';
 import { Geolocation }  from '@ionic-native/geolocation';
 import { NavController } from 'ionic-angular'; 
 // import { AngularFireList } from 'angularfire2/database';
@@ -25,7 +26,7 @@ export class HomePage {
       public navCtrl: NavController,
       public geolocation: Geolocation,
       public firebaseProvider: FirebaseProvider,
-     
+      public loadingCtrl: LoadingController
     ) {
      
 
@@ -33,17 +34,26 @@ export class HomePage {
 
   ionViewDidLoad(){
     
+    let loader = this.loadingCtrl.create({
+      content: "Carregando lojas proximas" 
+    });
+    loader.present();
     this.geolocation.getCurrentPosition().then((resp) => { 
 
       this.showMap(resp.coords.latitude,resp.coords.longitude );
       this.shoppingItems = this.firebaseProvider.getShoppingItems();
-     
+      
+      loader.dismiss();
+
      }).catch((error) => {
        console.log('Error getting location', error);
      });
  
   }
   
+
+ 
+
   
   addItem() {
     this.firebaseProvider.addItem(this.newItem);
@@ -61,10 +71,10 @@ export class HomePage {
     const options = {
       center:location,
       zoom:17
-    }
+    } 
 
     const map = new google.maps.Map(this.mapRef.nativeElement, options);
-    let marker =  this.addMarker(location,map,'you');
+    let marker =  this.addMarker(location,map,'you','http://maps.google.com/mapfiles/ms/icons/truck.png');
     let marker2 =  this.addMarker(fakePlace,map,'Uma loja perto de voce','http://maps.google.com/mapfiles/ms/icons/groecerystore.png');
     var infowindow = new google.maps.InfoWindow({
       content: 'Você está aqui'

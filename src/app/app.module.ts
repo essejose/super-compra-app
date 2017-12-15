@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { LoadingController } from 'ionic-angular';
 
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -36,6 +36,7 @@ var firebaseConfig  = {
   imports: [
     BrowserModule,
     HttpModule,
+
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig),
    
@@ -49,6 +50,7 @@ var firebaseConfig  = {
   ],
   providers: [
     StatusBar,
+    LoadingController,
     SplashScreen,
     FirebaseProvider,
     Geolocation,
