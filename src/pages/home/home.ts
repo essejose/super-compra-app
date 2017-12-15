@@ -6,7 +6,7 @@ import { NavController } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import 'rxjs/add/operator/map';
 declare var google: any;
-import { ShopPage } from '../../pages/shop/shop';
+import { ShopdetailPage } from '../../pages/shopdetail/shopdetail';
 
 @Component({
   selector: 'page-home',
@@ -86,7 +86,7 @@ export class HomePage {
     google.maps.event.addListener(marker2, 'click', () => {
       console.log(marker2);
       infowindow.open(map, marker2);
-      this.navCtrl.push(ShopPage);
+      this.navCtrl.push(ShopdetailPage);
    
   })
  

@@ -15,6 +15,8 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
 
 import { HomePage } from '../pages/home/home';
 import { ShopPage } from '../pages/shop/shop';
+import { ShopdetailPage } from '../pages/shopdetail/shopdetail';
+import { ProdutoListPage } from '../pages/produto-list/produto-list';
 
 
 var firebaseConfig  = {
@@ -30,7 +32,9 @@ var firebaseConfig  = {
   declarations: [
     MyApp,
     HomePage,
-    ShopPage
+    ShopPage,
+    ShopdetailPage,
+    ProdutoListPage
   ],
 
   imports: [
@@ -46,7 +50,9 @@ var firebaseConfig  = {
   entryComponents: [
     MyApp,
     HomePage,
-    ShopPage
+    ShopPage,
+    ShopdetailPage,
+    ProdutoListPage
   ],
   providers: [
     StatusBar,
