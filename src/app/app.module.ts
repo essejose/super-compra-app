@@ -7,17 +7,26 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LoadingController } from 'ionic-angular';
 
 import { HttpModule } from '@angular/http';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule , AngularFireList} from 'angularfire2/database';
+ 
+
+
 import { AngularFireModule } from 'angularfire2'; 
+import { AngularFireAuthModule  } from 'angularfire2/auth';
 
 import { MyApp } from './app.component'; 
 import { FirebaseProvider } from '../providers/firebase/firebase';
+import { AuthService } from '../providers/firebase-auth/AuthService';
+import { ProdutoService } from '../providers/carrinho/ProdutoService';
+
 
 import { HomePage } from '../pages/home/home';
 import { ShopPage } from '../pages/shop/shop';
 import { ShopdetailPage } from '../pages/shopdetail/shopdetail';
 import { ProdutoListPage } from '../pages/produto-list/produto-list';
-
+import { LoginPage } from '../pages/login/login';
+import { RegistrarPage } from '../pages/registrar/registrar';
+import { CarrinhoPage } from '../pages/carrinho/carrinho';
 
 var firebaseConfig  = {
   apiKey: "AIzaSyAh0QorZocX_FS0Q5nPZj6OBXLT90CpUyA",
@@ -32,18 +41,21 @@ var firebaseConfig  = {
   declarations: [
     MyApp,
     HomePage,
-    ShopPage,
+    ShopPage, 
     ShopdetailPage,
-    ProdutoListPage
+    ProdutoListPage,
+    LoginPage,
+    RegistrarPage,
+    CarrinhoPage
   ],
-
+ 
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpModule, 
+    AngularFireDatabaseModule, 
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(firebaseConfig), 
 
-    AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-   
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -52,16 +64,21 @@ var firebaseConfig  = {
     HomePage,
     ShopPage,
     ShopdetailPage,
-    ProdutoListPage
+    ProdutoListPage,
+    LoginPage,
+    RegistrarPage,
+    CarrinhoPage
   ],
   providers: [
     StatusBar,
     LoadingController,
     SplashScreen,
     FirebaseProvider,
+    AuthService,
+    ProdutoService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FirebaseProvider
+    
   ]
 })
 export class AppModule {}
