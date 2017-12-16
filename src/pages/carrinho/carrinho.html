@@ -22,9 +22,9 @@
     <ion-list>
         <ion-item-sliding *ngFor="let item of carrinhoItens | async">
           <ion-item>
-            {{ item.valor }}
-            {{ item.name.title  }}
-            {{ item.name.price  }}
+            
+            {{ item.produto.title  }}
+            {{ item.produto.price  }}
           </ion-item>
           <ion-item-options side="right">
             <button ion-button color="danger" icon-only (click)="removeItem(item.key)"><ion-icon name="trash"></ion-icon></button>
@@ -32,4 +32,14 @@
         </ion-item-sliding>
     </ion-list>
 
+  
+    <label  >  Total da compra : {{  totalVal | currency:'BRL':true}}</label>
+    
+
+
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+            <button ion-button  block (click)="fecharPedido()"> Fechar Pedido</button>
+    </ion-toolbar>
+  </ion-footer>

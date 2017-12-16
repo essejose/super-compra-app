@@ -55,13 +55,13 @@ export class HomePage {
  
 
   
-  addItem() {
-    this.firebaseProvider.addItem(this.newItem);
-  }
+  // addItem() {
+  //   this.firebaseProvider.addItem(this.newItem);
+  // }
  
-  removeItem(id) {
-    this.firebaseProvider.removeItem(id);
-  }
+  // removeItem(id) {
+  //   this.firebaseProvider.removeItem(id);
+  // }
 
 
   showMap(lat,lng){

@@ -27,6 +27,8 @@ import { ProdutoListPage } from '../pages/produto-list/produto-list';
 import { LoginPage } from '../pages/login/login';
 import { RegistrarPage } from '../pages/registrar/registrar';
 import { CarrinhoPage } from '../pages/carrinho/carrinho';
+import { PedidosPage } from '../pages/pedidos/pedidos';
+import { PedidosDetailPage} from '../pages/pedidos-detail/pedidos-detail';
 
 var firebaseConfig  = {
   apiKey: "AIzaSyAh0QorZocX_FS0Q5nPZj6OBXLT90CpUyA",
@@ -46,7 +48,9 @@ var firebaseConfig  = {
     ProdutoListPage,
     LoginPage,
     RegistrarPage,
-    CarrinhoPage
+    CarrinhoPage,
+    PedidosPage,
+    PedidosDetailPage
   ],
  
   imports: [
@@ -67,7 +71,9 @@ var firebaseConfig  = {
     ProdutoListPage,
     LoginPage,
     RegistrarPage,
-    CarrinhoPage
+    CarrinhoPage,
+    PedidosPage,
+    PedidosDetailPage
   ],
   providers: [
     StatusBar,

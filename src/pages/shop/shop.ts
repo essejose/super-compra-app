@@ -25,11 +25,11 @@ export class ShopPage {
   }
 
   addItem() {
-    this.firebaseProvider.addItem(this.newItem);
+    //this.firebaseProvider.addItem(this.newItem);
   }
  
   removeItem(id) {
-    this.firebaseProvider.removeItem(id);
+   // this.firebaseProvider.removeItem(id);
   }
 
 

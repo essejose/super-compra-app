@@ -43,7 +43,7 @@ export class FirebaseProvider {
           this.userId = '1';
         }
  
-        return this.afd.list('/carrinho/', ref => ref.orderByChild('name/userId').equalTo(this.userId))
+        return this.afd.list('/carrinho/', ref => ref.orderByChild('produto/userId').equalTo(this.userId))
         .snapshotChanges()
         .map(changes => {
           return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -56,31 +56,43 @@ export class FirebaseProvider {
     if(this.userId == undefined){
       this.userId = '1';
     }
-
-    let price;
-     this.afd.list('/carrinho/', ref => ref.orderByChild('name/userId').equalTo(this.userId))
-    .snapshotChanges() 
-    .subscribe(actions => {
-      actions.forEach(action => {
-        console.log(action.type);
-        console.log(action.key);
-        console.log(  action.payload.val().name.price)
-        price = price + action.payload.val().name.price;
-      });
-      return price  
-    }); 
+ 
+     this.afd.list('/carrinho/', ref => ref.orderByChild('produto/userId').equalTo(this.userId))
+ 
 
   }
 
    addItem(name,path:string) {
      if(path == undefined){
-      path = 'shoppingItems';
+        path = 'shoppingItems';
      }
     const afList = this.afd.list('/'+path+'/')
-    afList.push({ name: name });
+    afList.push(name);
     const listObservable = afList.snapshotChanges();
     listObservable.subscribe();
    }
+
+
+   addPedido(pedidos,total,formapagamento) {
+    
+   const afList = this.afd.list('/pedidos/');
+
+
+    let pedidoformat = {
+      id : 1,
+      total: total,
+      active:false,
+      formaPagemento:formapagamento,
+      itens: pedidos
+    }
+   afList.push(pedidoformat);
+   const listObservable = afList.snapshotChanges();
+   listObservable.subscribe();
+  }
+
+
+
+   
   
    removeItem(id,path) {
     if(path == undefined){
