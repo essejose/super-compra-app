@@ -32,6 +32,7 @@ export class CarrinhoPage {
     console.log('ionViewDidLoad CarrinhoPage');
 
     this.carrinhoItens = this.firebaseProvider.getShoppingCarrinhoItems();
+    console.log( this.carrinhoItens);
 
     this.firebaseProvider.getShoppingCarrinhoItems().subscribe(
       list => {

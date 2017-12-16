@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>PedidosDetailPage</ion-title>
+    <ion-title>Detalhe do Pedido</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,29 +18,53 @@
     <ion-grid>
         <ion-row>
           <ion-col col-12>
-              <ion-icon [name]="myIcon"></ion-icon>
-              
-            {{info}}</ion-col>
+            
+              <ion-icon name="happy"  ></ion-icon>
+            <div class="label-detail">  {{info}}</div>
+          
+          </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-6>Total da compra : {{  valortotal | currency:'BRL':true}}</ion-col>
+          <ion-col col-6></ion-col>
         </ion-row>
       </ion-grid>
 
+      <ion-list>
+          <ion-list-header>
+              <ion-icon name="cash"></ion-icon>
+              <span> Total da compra : {{  valortotal | currency:'BRL':true}}</span>
+          </ion-list-header>
 
-   
+          <ion-list-header item-end icon-left>
+              <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon> 
+             <span>codigo da compra  : {{  codigocompra }}</span>
+          </ion-list-header>
 
-  
+
+          <ion-list-header item-end icon-left>
+              <ion-icon name="pricetag"></ion-icon>
+             <span>Produdos solicitados</span>
+          </ion-list-header>
+
+          <ion-item-sliding *ngFor="let item of pedidos ">
+              <ion-item>
+                  <ion-avatar item-start>
+                      <img src="http://lorempixel.com/400/200/">
+                    </ion-avatar>
+                  <h2>{{ item.produto.title  }}</h2>
+                  <h3>{{ item.produto.price | currency:'BRL':true   }}</h3>
+              </ion-item>
+             
+          
+            </ion-item-sliding>
+        </ion-list>
     
  
-    <ion-list>
-        <ion-item-sliding *ngFor="let item of pedidos ">
-          <ion-item>
-            
-            {{ item.produto.title  }}
-            {{ item.produto.price  }}
-          </ion-item>
-         
-        </ion-item-sliding>
-    </ion-list>
+ 
 </ion-content>
+<ion-footer>
+    <ion-toolbar  text-center >
+            <button ion-button (click) = goPedidoPage() >  Lista de Pedidos</button>
+            <button ion-button  color="secondary"  (click) = goMapaPage()  > Lista de lojas</button>
+    </ion-toolbar>
+  </ion-footer>

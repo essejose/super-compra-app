@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { FirebaseProvider } from './../../providers/firebase/firebase';
 /**
  * Generated class for the PedidosPage page.
  *
@@ -15,11 +15,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PedidosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  pedidosItems:  any;
+
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public firebaseProvider: FirebaseProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PedidosPage');
+   
+    this.pedidosItems = this.firebaseProvider.getPedidosItens();
+    console.log(this.pedidosItems);
   }
 
 }

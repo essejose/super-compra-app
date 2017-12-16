@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+ 
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase,AngularFireList} from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth'; 
-import { AuthService } from '../../providers/firebase-auth/AuthService'; 
+import { AngularFireAuth } from 'angularfire2/auth'; 
+ 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -12,12 +12,12 @@ export class FirebaseProvider {
 
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>; 
-  userId: string;
+  userId: any;
   total:any;
 
   constructor(public afd: AngularFireDatabase,
               private firebaseAuth: AngularFireAuth,
-              private auth: AuthService
+      
   ) { 
 
     this.firebaseAuth.authState.subscribe(user => {
@@ -37,10 +37,11 @@ export class FirebaseProvider {
 
    }
    
-   getShoppingCarrinhoItems() {
-
+  getShoppingCarrinhoItems() {
+    console.log(this.userId );
         if(this.userId == undefined){
-          this.userId = '1';
+          this.userId = 1;
+        
         }
  
         return this.afd.list('/carrinho/', ref => ref.orderByChild('produto/userId').equalTo(this.userId))
@@ -55,38 +56,56 @@ export class FirebaseProvider {
 
     if(this.userId == undefined){
       this.userId = '1';
-    }
- 
+    } 
      this.afd.list('/carrinho/', ref => ref.orderByChild('produto/userId').equalTo(this.userId))
  
 
   }
 
+  getPedidosItens(){
+     
+        if(this.userId == undefined){
+          this.userId = '1';
+        } 
+        return   this.afd.list('/pedidos/', ref => ref.orderByChild('pedido/userId').equalTo(this.userId))  .snapshotChanges()
+         .map(changes => {
+           return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+         })
+     
+    
+      }
+
+
    addItem(name,path:string) {
      if(path == undefined){
         path = 'shoppingItems';
      }
-    const afList = this.afd.list('/'+path+'/')
+
+     name.produto.userId = this.userId;
+     
+    let afList = this.afd.list('/'+path+'/')
     afList.push(name);
-    const listObservable = afList.snapshotChanges();
+    let listObservable = afList.snapshotChanges();
     listObservable.subscribe();
-   }
+   
+  }
 
 
    addPedido(pedidos,total,formapagamento) {
+    if(this.userId == undefined){
+      this.userId = '1';
+    }
     
-   const afList = this.afd.list('/pedidos/');
-
-
+    let afList = this.afd.list('/pedidos/');
     let pedidoformat = {
-      id : 1,
+      userId : this.userId,
       total: total,
       active:false,
       formaPagemento:formapagamento,
       itens: pedidos
     }
-   afList.push(pedidoformat);
-   const listObservable = afList.snapshotChanges();
+   afList.push({pedido:pedidoformat});
+   let listObservable = afList.snapshotChanges();
    listObservable.subscribe();
   }
 

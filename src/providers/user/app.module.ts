@@ -83,7 +83,7 @@ var firebaseConfig  = {
     AuthService,
     ProdutoService,
     Geolocation,
-    AlertController,
+    AlertController, 
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     
   ]
