@@ -16,15 +16,17 @@
 <ion-content padding>
 
 
-    <button class="btn btn-success" (click)='createProduto()'>Create</button>
+    <!-- <button class="btn btn-success" (click)='createProduto()'>Create</button> -->
 
 
     <ion-list>
         <ion-item-sliding *ngFor="let item of carrinhoItens | async">
-          <ion-item>
-            
-            {{ item.produto.title  }}
-            {{ item.produto.price  }}
+          <ion-item text-wrap >
+             <ion-thumbnail item-start>
+              <img src="{{ item.produto.imageUrl  }}">
+         </ion-thumbnail>
+         <h2> {{ item.produto.title  }} </h2>
+            <p>   {{ item.produto.price  }}</p>
           </ion-item>
           <ion-item-options side="right">
             <button ion-button color="danger" icon-only (click)="removeItem(item.key)"><ion-icon name="trash"></ion-icon></button>

@@ -17,7 +17,7 @@ export class CarrinhoPage {
   carrinhoItens : any;
   carrinho: any;
   total :  any[] ;
-  totalVal: number = 0;
+  totalVal: any = 0;
 
   constructor(  
     public navCtrl: NavController,
@@ -43,18 +43,7 @@ export class CarrinhoPage {
   
 
   }
-
-  createProduto() {
-    this.carrinho  = new Produto();
-    console.log(this.carrinho);
-    this.carrinho.title = 'teste';
-    this.carrinho.price = 100; 
-    this.carrinho.userId ='1';
-    this.firebaseProvider.addItem( {produto:this.carrinho},'carrinho');
-    console.log('x',this.firebaseProvider.getShoppingCarrinhoTotal());
-    this.firebaseProvider.getShoppingCarrinhoItems().subscribe(list => this.total = list);
-
-  }
+ 
 
   removeItem(key){
     this.firebaseProvider.removeItem(key,'carrinho'); 
@@ -66,7 +55,7 @@ export class CarrinhoPage {
    
     
     this.somartotal();
-    this.firebaseProvider.addPedido( 
+      this.firebaseProvider.addPedido( 
       this.total, 
       this.totalVal,
       'dinheiro'
@@ -86,7 +75,7 @@ export class CarrinhoPage {
   somartotal(){
       this.totalVal = 0;
       this.total.forEach(action => {
-        this.totalVal =  this.totalVal + action.produto.price;
+        this.totalVal =  parseInt(this.totalVal) + parseInt(action.produto.price);
       }) 
 
   }

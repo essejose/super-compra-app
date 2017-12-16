@@ -3,5 +3,7 @@ export class Produto {
     title: string;
     active: boolean = true;
     userId: string;
-    price: number;
+    price: any;
+    loja: string;
+    imageUrl:string;
   }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import 'rxjs/add/operator/map';
-
+import { Produto } from '../../providers/carrinho/produto';
  
 
 @IonicPage()
@@ -12,7 +12,11 @@ import 'rxjs/add/operator/map';
 })
 export class ShopPage {
   shoppingItems:  any;
-  newItem = '';
+  price: any;
+  title: any;
+  imageUrl: any;
+  loja:any
+  newItem : Produto;
   constructor(public navCtrl: NavController, public navParams: NavParams,   public firebaseProvider: FirebaseProvider) {
   }
 
@@ -25,11 +29,17 @@ export class ShopPage {
   }
 
   addItem() {
-    //this.firebaseProvider.addItem(this.newItem);
+    this.newItem = new Produto();
+    this.newItem.price    =  this.price;
+    this.newItem.title    =  this.title;
+    this.newItem.loja     =  this.loja;
+    this.newItem.imageUrl =  this.imageUrl;
+    this.newItem.userId = '1';
+     this.firebaseProvider.addItem({produto:this.newItem} ,'shoppingItems');
   }
  
   removeItem(id) {
-   // this.firebaseProvider.removeItem(id);
+    this.firebaseProvider.removeItem(id,'shoppingItems');
   }
 
 

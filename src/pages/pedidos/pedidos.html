@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>PedidosPage</ion-title>
+    <ion-title>Meus Pedidos</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,15 +16,12 @@
 <ion-content padding>
     <ion-list>
         <ion-item-sliding *ngFor="let item of pedidosItems | async">
-          <ion-item> 
-            <ion-thumbnail item-start>
-                <img src="http://lorempixel.com/400/200/food/">
-           </ion-thumbnail>
-           
-           <h2> {{ item.name  }} </h2>
-           <p> {{ item.key }} </p> 
+          <ion-item (click)="verDetalhe(item)" >  
 
-           <button ion-button color="secondary" (click)="verDetalhe(item)" >Ver detalhe</button> 
+           <h2> {{ item.pedido  }} </h2>
+           <p> {{ item.pedido.total }} </p> 
+
+           <!-- <button ion-button color="secondary" >Ver detalhe</button>  -->
           </ion-item> 
         </ion-item-sliding>
       </ion-list>

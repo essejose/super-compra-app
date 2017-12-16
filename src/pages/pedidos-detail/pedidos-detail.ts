@@ -29,9 +29,9 @@ export class PedidosDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PedidosDetailPage');
     this.pedidos = this.navParams.get("pedidos");
-    this.valortotal = this.navParams.get("valortotal");
+    this.valortotal = parseInt(this.navParams.get("valortotal"));
     this.info = this.navParams.get("info")
-    this.codigocompra = '5554584';
+    this.codigocompra = Math.floor (Math.random() * (999999 - 0) + 500);
     if(this.info == undefined){
       this.info = "Detalhes do pedido"
     

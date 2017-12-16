@@ -9,7 +9,7 @@ import { ProdutoListPage } from '../pages/produto-list/produto-list';
 import { LoginPage } from '../pages/login/login';
 import { CarrinhoPage } from '../pages/carrinho/carrinho';
 import { PedidosPage } from '../pages/pedidos/pedidos';
- 
+import { ShopPage } from '../pages/shop/shop';
 @Component({
   templateUrl: 'app.html' 
 })
@@ -21,6 +21,7 @@ export class MyApp {
   public paginas = [
      
     {titulo: 'Meus Pedidos', componente: PedidosPage},
+    {titulo: 'Cadastrar Produtos', componente: ShopPage},
     
     
   ];
@@ -29,7 +30,7 @@ export class MyApp {
   constructor(
      platform: Platform,
      statusBar: StatusBar,
-     splashScreen: SplashScreen, 
+     splashScreen: SplashScreen,  
     ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

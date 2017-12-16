@@ -47,12 +47,12 @@
           </ion-list-header>
 
           <ion-item-sliding *ngFor="let item of pedidos ">
-              <ion-item>
-                  <ion-avatar item-start>
-                      <img src="http://lorempixel.com/400/200/">
-                    </ion-avatar>
+              <ion-item text-wrap>
+                  <ion-thumbnail item-start>
+                      <img src= "{{ item.produto.imageUrl  }}">
+                    </ion-thumbnail>
                   <h2>{{ item.produto.title  }}</h2>
-                  <h3>{{ item.produto.price | currency:'BRL':true   }}</h3>
+                  <h3>R$ {{ item.produto.price  }}</h3>
               </ion-item>
              
           
