@@ -54,20 +54,28 @@ export class CarrinhoPage {
   fecharPedido(){
    
     
-    this.somartotal();
-      this.firebaseProvider.addPedido( 
-      this.total, 
-      this.totalVal,
-      'dinheiro'
-     );
-
-    this.navCtrl.setRoot(PedidosDetailPage,{
-      info: 'Pedido Efetuado com sucesso!',
-      pedidos:  this.total,
-      valortotal: this.totalVal,
-      formaPagamento: 'dinheiro'
-    }
-    ); 
+    if(this.totalVal > 0){
+        this.somartotal();
+          this.firebaseProvider.addPedido( 
+          this.total, 
+          this.totalVal, 
+          'dinheiro', // tornar dinamico
+          'Mercearia do jose' // tornar dinamico
+        ); 
+          
+        this.total.forEach((item) =>{
+        
+          this.firebaseProvider.removeItem(item.key,'/carrinho/')
+        })
+        
+        this.navCtrl.setRoot(PedidosDetailPage,{
+          info: 'Pedido Efetuado com sucesso!',
+          pedidos:  this.total,
+          valortotal: this.totalVal,
+          formaPagamento: 'dinheiro'
+        }
+        ); 
+  }
 
     
   }
@@ -78,8 +86,6 @@ export class CarrinhoPage {
         this.totalVal =  parseInt(this.totalVal) + parseInt(action.produto.price);
       }) 
 
-  }
-
-
+  } 
 
 }

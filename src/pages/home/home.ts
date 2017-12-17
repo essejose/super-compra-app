@@ -50,19 +50,7 @@ export class HomePage {
      });
  
   }
-  
-
- 
-
-  
-  // addItem() {
-  //   this.firebaseProvider.addItem(this.newItem);
-  // }
- 
-  // removeItem(id) {
-  //   this.firebaseProvider.removeItem(id);
-  // }
-
+   
 
   showMap(lat,lng){
 
@@ -74,7 +62,7 @@ export class HomePage {
     } 
 
     const map = new google.maps.Map(this.mapRef.nativeElement, options);
-    let marker =  this.addMarker(location,map,'you','http://maps.google.com/mapfiles/ms/icons/truck.png');
+    let marker =  this.addMarker(location,map,'you','http://maps.google.com/mapfiles/ms/icons/POI.png');
     let marker2 =  this.addMarker(fakePlace,map,'Uma loja perto de voce','http://maps.google.com/mapfiles/ms/icons/groecerystore.png');
     var infowindow = new google.maps.InfoWindow({
       content: 'Você está aqui'
@@ -85,7 +73,7 @@ export class HomePage {
     })
     google.maps.event.addListener(marker2, 'click', () => {
       console.log(marker2);
-      infowindow.open(map, marker2);
+     // infowindow.open(map, marker2);
       this.navCtrl.push(ShopdetailPage);
    
   })

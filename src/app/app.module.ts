@@ -1,3 +1,5 @@
+
+import { MyApp } from './app.component'; 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, AlertController  } from 'ionic-angular';
@@ -8,13 +10,10 @@ import { LoadingController } from 'ionic-angular';
 
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule  } from 'angularfire2/database';
- 
-
-
+  
 import { AngularFireModule } from 'angularfire2'; 
 import { AngularFireAuthModule  } from 'angularfire2/auth';
 
-import { MyApp } from './app.component'; 
 import { FirebaseProvider } from '../providers/firebase/firebase';
 import { AuthService } from '../providers/firebase-auth/AuthService';
 import { ProdutoService } from '../providers/carrinho/ProdutoService';

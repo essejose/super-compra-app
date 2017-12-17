@@ -91,7 +91,7 @@ export class FirebaseProvider {
   }
 
 
-   addPedido(pedidos,total,formapagamento) {
+   addPedido(pedidos,total,formapagamento,loja) {
     if(this.userId == undefined){
       this.userId = '1';
     }
@@ -102,7 +102,8 @@ export class FirebaseProvider {
       total: total,
       active:false,
       formaPagemento:formapagamento,
-      itens: pedidos
+      itens: pedidos,
+      loja:loja
     }
    afList.push({pedido:pedidoformat});
    let listObservable = afList.snapshotChanges();

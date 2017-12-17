@@ -50,6 +50,13 @@ export class AuthService {
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
+        let alerta = this.alert.create({
+          title: 'Sucesso !',
+          subTitle: 'Faço o login com seu usuario',
+          buttons: ['OK']
+        });
+        alerta.present();
+
         return this.db.object(`/users/${user.uid}`).update({
           userId: user.uid,
           email: user.email

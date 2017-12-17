@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from './../../providers/firebase/firebase';
-/**
- * Generated class for the PedidosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
+import { PedidosDetailPage } from '../../pages/pedidos-detail/pedidos-detail';
+
 
 @IonicPage()
 @Component({
@@ -26,7 +24,16 @@ export class PedidosPage {
   ionViewDidLoad() {
    
     this.pedidosItems = this.firebaseProvider.getPedidosItens();
-    console.log(this.pedidosItems);
+    console.log(this.pedidosItems); 
   }
-
+  verDetalhe(item){ 
+    console.log(item.pedido);
+      this.navCtrl.push(PedidosDetailPage,{
+        info: 'Pedido Efetuado com sucesso!',
+        pedidos: item.pedido.itens,
+        valortotal: item.pedido.total,
+        formaPagamento: 'dinheiro'
+      });
+    
+  }
 }

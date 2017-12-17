@@ -17,9 +17,9 @@
     <ion-list>
         <ion-item-sliding *ngFor="let item of pedidosItems | async">
           <ion-item (click)="verDetalhe(item)" >  
-
-           <h2> {{ item.pedido  }} </h2>
-           <p> {{ item.pedido.total }} </p> 
+ 
+           <h2> {{ item.pedido.loja  }} </h2>
+           <p> R$ {{ item.pedido.total }} </p> 
 
            <!-- <button ion-button color="secondary" >Ver detalhe</button>  -->
           </ion-item> 
