@@ -4,7 +4,7 @@ import { FirebaseProvider } from './../../providers/firebase/firebase';
 import { Produto } from '../../providers/carrinho/produto';
 import { CarrinhoPage } from '../../pages/carrinho/carrinho';
 import {  AlertController   } from 'ionic-angular'; 
-
+import { LoadingController } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-produto-list',
@@ -20,6 +20,7 @@ export class ProdutoListPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public alert: AlertController,
+    public loadingCtrl :LoadingController,
     public firebaseProvider: FirebaseProvider,
     public viewCtrl:ViewController) {
   }
@@ -27,9 +28,26 @@ export class ProdutoListPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProdutoListPage');
 
+    let loader = this.loadingCtrl.create({
+      content: "Carregando produtos" 
+    });
+    loader.present();
+    this.loadShopItens().then((registros) =>{
+      
+      this.shoppingItems = registros;
+      loader.dismiss();
+    })
+   
 
-    this.shoppingItems = this.firebaseProvider.getShoppingItems();
+  }
 
+  loadShopItens(){
+    return new Promise(resolve => { 
+      let itens = this.firebaseProvider.getShoppingItems() 
+      resolve( itens); 
+    })
+
+   
   }
 
   comprarItem(e){

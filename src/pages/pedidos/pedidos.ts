@@ -14,7 +14,8 @@ import { PedidosDetailPage } from '../../pages/pedidos-detail/pedidos-detail';
 export class PedidosPage {
 
   pedidosItems:  any;
-
+  public registros:any;
+  
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -22,10 +23,23 @@ export class PedidosPage {
   }
 
   ionViewDidLoad() {
-   
-    this.pedidosItems = this.firebaseProvider.getPedidosItens();
-    console.log(this.pedidosItems); 
+    
+    
+    this.pedidosLoad().then((registros) =>{
+      
+      this.pedidosItems = registros;
+       
+    });
+
   }
+
+  pedidosLoad(){
+    return new Promise(resolve => { 
+      let itens = this.firebaseProvider.getPedidosItens() 
+      resolve( itens); 
+    })
+  }
+
   verDetalhe(item){ 
     console.log(item.pedido);
       this.navCtrl.push(PedidosDetailPage,{

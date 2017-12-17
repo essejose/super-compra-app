@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Seu Carrinho</ion-title>
+    <ion-title>Sua Lista</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -32,11 +32,24 @@
             <button ion-button color="danger" icon-only (click)="removeItem(item.key)"><ion-icon name="trash"></ion-icon></button>
           </ion-item-options>
         </ion-item-sliding>
-    </ion-list>
+    </ion-list> 
 
   
-    <label  >  Total da compra : {{  totalVal | currency:'BRL':true}}</label>
-    
+ 
+     <ion-list-header item-end icon-left> 
+        <ion-label>Pagamento em dinheiro</ion-label>
+        <ion-toggle disabled="true" checked="true"></ion-toggle>
+      </ion-list-header>
+
+      <ion-list-header item-end icon-left>
+        <ion-label>Retirar no local</ion-label>
+        <ion-toggle disabled="true" checked="true"></ion-toggle>
+      </ion-list-header>
+
+      <ion-list-header item-end icon-left> 
+          <ion-icon name="cash"></ion-icon>
+      <ion-label> Total da compra : {{  totalVal | currency:'BRL':true}}</ion-label>
+    </ion-list-header>
 
 
 </ion-content>

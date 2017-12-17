@@ -3,25 +3,28 @@ import { Platform , Nav} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ShopdetailPage } from '../pages/shopdetail/shopdetail';
-import { ProdutoListPage } from '../pages/produto-list/produto-list';
-import { LoginPage } from '../pages/login/login';
-import { CarrinhoPage } from '../pages/carrinho/carrinho';
+// import { HomePage } from '../pages/home/home';
+// import { ShopdetailPage } from '../pages/shopdetail/shopdetail';
+// import { ProdutoListPage } from '../pages/produto-list/produto-list';
+
+// import { CarrinhoPage } from '../pages/carrinho/carrinho';
 import { PedidosPage } from '../pages/pedidos/pedidos';
-import { ShopPage } from '../pages/shop/shop';
+// import { ShopPage } from '../pages/shop/shop';
+
+import { LoginPage } from '../pages/login/login';
+
 @Component({
   templateUrl: 'app.html' 
 })
 export class MyApp { 
-  rootPage:any = HomePage; 
+  rootPage:any = LoginPage; 
   
   @ViewChild(Nav) public nav:Nav; 
   
   public paginas = [
      
     {titulo: 'Meus Pedidos', componente: PedidosPage},
-    {titulo: 'Cadastrar Produtos', componente: ShopPage},
+    // {titulo: 'Cadastrar Produtos', componente: ShopPage},
     
     
   ];

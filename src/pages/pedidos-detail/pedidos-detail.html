@@ -36,14 +36,25 @@
           </ion-list-header>
 
           <ion-list-header item-end icon-left>
-              <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon> 
-             <span>codigo da compra  : {{  codigocompra }}</span>
+              <ion-icon ios="logo-usd" md="logo-usd"></ion-icon>
+              
+             <span>Pagamento em dinheiro</span>
           </ion-list-header>
 
 
           <ion-list-header item-end icon-left>
+              <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon> 
+             <span>codigo da compra  : {{  codigocompra }}</span>
+          </ion-list-header>
+ 
+         
+ 
+       
+ 
+
+          <ion-list-header item-end icon-left>
               <ion-icon name="pricetag"></ion-icon>
-             <span>Produdos solicitados</span>
+             <span>Retirar no local</span>
           </ion-list-header>
 
           <ion-item-sliding *ngFor="let item of pedidos ">

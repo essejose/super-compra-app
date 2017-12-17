@@ -62,7 +62,7 @@ export class HomePage {
     } 
 
     const map = new google.maps.Map(this.mapRef.nativeElement, options);
-    let marker =  this.addMarker(location,map,'you','http://maps.google.com/mapfiles/ms/icons/POI.png');
+    let marker =  this.addMarker(location,map,'you','http://maps.google.com/mapfiles/ms/icons/POI.png'); 
     let marker2 =  this.addMarker(fakePlace,map,'Uma loja perto de voce','http://maps.google.com/mapfiles/ms/icons/groecerystore.png');
     var infowindow = new google.maps.InfoWindow({
       content: 'Você está aqui'

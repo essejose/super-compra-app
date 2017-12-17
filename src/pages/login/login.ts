@@ -32,15 +32,16 @@ export class LoginPage {
     if( this.logout){
       this.auth.logout()
     }
-    else if(this.auth.authenticated){
-      this.navCtrl.setRoot(HomePage);
-    }
+    //criando sessao
+    // else if(this.auth.authenticated){
+    //   this.navCtrl.setRoot(HomePage);
+    // }
 
-    this.user.value = 'jose@teste.com';
-    this.password.value = '123456';
-   
+    this.user.value = '';
+    this.password.value = '';
+    
   }
-
+ 
   signInUser() { 
     console.log(this.auth.authenticated);
     console.log(this.auth.currentUserObservable );

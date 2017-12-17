@@ -14,7 +14,9 @@
 
 
 <ion-content padding>
-    <ion-list>
+
+
+    <ion-list >
         <ion-item-sliding *ngFor="let item of pedidosItems | async">
           <ion-item (click)="verDetalhe(item)" >  
  
@@ -25,4 +27,12 @@
           </ion-item> 
         </ion-item-sliding>
       </ion-list>
+
+      <div  *ngIf="registros " >Voce nao possui registros</div>
+
 </ion-content>
+<ion-footer>
+    <ion-toolbar  text-center >
+        <ion-label>Va ate a loja e retire seus produtos</ion-label>
+    </ion-toolbar>
+  </ion-footer>
